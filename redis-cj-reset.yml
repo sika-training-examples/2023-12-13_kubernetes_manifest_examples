@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: redis-reset
+spec:
+  schedule: "* * * * *"
+  concurrencyPolicy: Replace
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 0
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: main
+              image: redis
+              command:
+                - redis-cli
+                - -h
+                - redis
+                - flushall
+              resources:
+                requests:
+                  cpu: 20m
+                  memory: 30Mi
+                limits:
+                  cpu: 40m
+                  memory: 60Mi
