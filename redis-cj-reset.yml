@@ -18,7 +18,7 @@ spec:
               command:
                 - /bin/sh
                 - -c
-                - redis-cli -h $REDIS flushall
+                - redis-cli -h $REDIS set counter 100
               env:
                 - name: REDIS
                   value: redis
