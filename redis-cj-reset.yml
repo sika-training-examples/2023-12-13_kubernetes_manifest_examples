@@ -16,10 +16,12 @@ spec:
             - name: main
               image: redis
               command:
-                - redis-cli
-                - -h
-                - redis
-                - flushall
+                - /bin/sh
+                - -c
+                - redis-cli -h $REDIS flushall
+              env:
+                - name: REDIS
+                  value: redis
               resources:
                 requests:
                   cpu: 20m
