@@ -4,3 +4,4 @@ metadata:
   name: counter
 data:
   PREFIX: generali
+  SLOW_START: "10"

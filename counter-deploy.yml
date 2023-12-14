@@ -15,13 +15,19 @@ spec:
     spec:
       containers:
         - name: main
-          image: harbor.k8ssb.cpas.cz/ondrejsika/counter:1
+          image: harbor.k8ssb.cpas.cz/ondrejsika/counter:2
           ports:
             - containerPort: 80
           livenessProbe:
             httpGet:
               path: /
               port: 80
+          startupProbe:
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 1
+            failureThreshold: 30
           env:
             - name: REDIS
               value: redis
