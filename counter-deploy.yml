@@ -18,6 +18,10 @@ spec:
           image: harbor.k8ssb.cpas.cz/ondrejsika/counter:1
           ports:
             - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
           env:
             - name: REDIS
               value: redis

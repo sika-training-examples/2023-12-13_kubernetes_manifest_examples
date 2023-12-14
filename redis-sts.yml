@@ -30,6 +30,11 @@ spec:
           image: redis
           ports:
             - containerPort: 6379
+          livenessProbe:
+            exec:
+              command:
+                - redis-cli
+                - ping
           resources:
             requests:
               cpu: 50m
