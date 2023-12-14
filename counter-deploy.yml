@@ -15,12 +15,15 @@ spec:
     spec:
       containers:
         - name: main
-          image: ondrejsika/counter
+          image: harbor.k8ssb.cpas.cz/ondrejsika/counter:1
           ports:
             - containerPort: 80
           env:
             - name: REDIS
               value: redis
+          envFrom:
+            - configMapRef:
+                name: counter
           resources:
             requests:
               cpu: 50m
